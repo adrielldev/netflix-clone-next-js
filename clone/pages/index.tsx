@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useSession, signIn, signOut } from "next-auth/react"
+import netflixLogo from '../public/netflix-logo.png'
 
 const Home: NextPage = () => {
   const { data: session } = useSession()
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center"
     style={{backgroundImage:'linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)), url(https://assets.nflxext.com/ffe/siteui/vlv3/7cee2527-d2cc-4cc9-99f6-d1375e72d46e/464f74e4-ad4d-4357-9c7e-96312b13196b/BR-pt-20230103-popsignuptwoweeks-perspective_alpha_website_medium.jpg)'}}>
@@ -11,13 +13,21 @@ const Home: NextPage = () => {
         <title>Netflix Clone</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header className='w-full'>
+        <div className="px-16 py-8 flex justify-between items-center">
+          <h1 className="text-white text-3xl">
+            <img src={netflixLogo.src} className='w-28 h-16'/>
+          </h1>
+          {!session && <>
+        <button className='bg-[#e50914] p-4 text-sm w-20 h-12 flex items-center  text-white border border-transparent rounded ' onClick={()=>signIn()}>Sign In  </button>
+       </>}
+
+        </div>
+      </header>
 
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-       {!session && <>
-        Not signed in <br/>
-        <button onClick={()=>signIn()}>Sign In  </button>
-       </>}
+       
        {session && <>
        Signed in as{session.user?.email} <br/>
        <button onClick={()=>signOut()}>Sign Out</button>

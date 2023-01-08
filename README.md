@@ -1,2 +1,3 @@
 # netflix-clone-next-js
-Clone da página da netflix usando NextJS e TailwindCSS
+Clone da página inicial do Netflix usando NextJS e TailwindCSS, também usado GoogleCloud
+para autenticação com NextAuth
